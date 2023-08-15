@@ -14,6 +14,6 @@ cask "skip" do
   binary "skipstone.artifactbundle/skipstone"
 
   postflight do
-    system "xattr", "-r", "-d", "com.apple.quarantine", "#{staged_path}/skipstone"
+    system "xattr", "-r", "-d", "com.apple.quarantine", "#{staged_path}/skipstone.artifactbundle/skipstone"
   end
 end
