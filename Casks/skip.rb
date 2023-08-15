@@ -11,5 +11,5 @@ cask "skip" do
   #depends_on formula: "gradle"
   #depends_on cask: "android-studio"
 
-  binary "skipstone"
+  binary "skipstone.artifactbundle/skipstone"
 end
