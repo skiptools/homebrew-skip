@@ -8,8 +8,12 @@ cask "skip" do
   desc "Tool for creating dual-platform iPhone/Android apps in Swift"
   homepage "https://skip.tools/"
 
-  #depends_on formula: "gradle"
+  depends_on formula: "gradle"
   #depends_on cask: "android-studio"
 
   binary "skipstone.artifactbundle/skipstone"
+
+  postflight do
+    system "xattr", "-r", "-d", "com.apple.quarantine", "#{staged_path}/skipstone"
+  end
 end
