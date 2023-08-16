@@ -1,8 +1,8 @@
 cask "skip" do
-  version "0.5.41"
-  sha256 "886c9fb26f308cd6dcf1b357d4d13a81fe8a616c3ed0118ba8f648d532df20b1"
+  version "0.5.57"
+  sha256 "1725f982a656a21e0d12d933a59da218fc9fe8c17429b911c165bb9bc543a647"
 
-  url "https://github.com/skiptools/skip/releases/download/#{version}/skipstone.plugin.zip",
+  url "https://github.com/skiptools/skip/releases/download/#{version}/skip.zip",
       verified: "github.com/skiptools/skip/"
   name "Skip"
   desc "Tool for creating dual-platform iPhone/Android apps in Swift"
@@ -11,9 +11,9 @@ cask "skip" do
   depends_on formula: "gradle"
   #depends_on cask: "android-studio"
 
-  binary "skipstone.artifactbundle/skipstone"
+  binary "skip"
 
   postflight do
-    system "xattr", "-r", "-d", "com.apple.quarantine", "#{staged_path}/skipstone.artifactbundle/skipstone"
+    system "xattr", "-r", "-d", "com.apple.quarantine", "#{staged_path}/skip"
   end
 end
