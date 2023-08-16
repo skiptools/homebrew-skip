@@ -15,6 +15,6 @@ cask "skip" do
   binary "skip"
 
   postflight do
-    system "xattr", "-r", "-d", "com.apple.quarantine", "#{staged_path}/skip"
+    system "xattr", "-c", "#{staged_path}/skip"
   end
 end
