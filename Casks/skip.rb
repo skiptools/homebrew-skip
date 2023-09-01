@@ -15,6 +15,6 @@ cask "skip" do
 
   postflight do
     system "xattr", "-c", "#{staged_path}/skip"
-    system "#{staged_path}/skip", "welcome"
+    system "#{staged_path}/skip", "welcome", "--first-run"
   end
 end
