@@ -17,4 +17,8 @@ cask "skip" do
     system "xattr", "-c", "#{staged_path}/skip"
     system "#{staged_path}/skip", "welcome", "--first-run"
   end
+
+  caveats do
+    license "https://skip.tools/eula"
+  end
 end
