@@ -1,6 +1,6 @@
 cask "skip" do
-  version "0.6.18"
-  sha256 "19dd7b6df508a4099ebc7c1c1077d436c1944389e4efb686378502fbe051d7f8"
+  version "0.6.19"
+  sha256 "4a715fc84c545b1c8e52d74c39b1de974294d3a6267433c8993423112e344bc0"
 
   url "https://source.skip.tools/skip/releases/download/#{version}/skip.zip",
       verified: "source.skip.tools/skip/"
@@ -11,7 +11,7 @@ cask "skip" do
   depends_on formula: "gradle"
   depends_on macos: ">= :ventura"
 
-  binary "skip"
+  binary "skip.artifactbundle/macos/skip"
 
   postflight do
     system "xattr", "-c", "#{staged_path}/skip.artifactbundle/macos/skip"
