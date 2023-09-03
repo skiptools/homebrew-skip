@@ -1,6 +1,6 @@
 cask "skip" do
-  version "0.6.17"
-  sha256 "40cbc15309802f5aab1115c18946dad33a578ed50f2aa9df6b250434f821f048"
+  version "0.6.18"
+  sha256 "19dd7b6df508a4099ebc7c1c1077d436c1944389e4efb686378502fbe051d7f8"
 
   url "https://source.skip.tools/skip/releases/download/#{version}/skip.zip",
       verified: "source.skip.tools/skip/"
@@ -14,8 +14,8 @@ cask "skip" do
   binary "skip"
 
   postflight do
-    system "xattr", "-c", "#{staged_path}/skip"
-    system "#{staged_path}/skip", "welcome", "--first-run"
+    system "xattr", "-c", "#{staged_path}/skip.artifactbundle/macos/skip"
+    system "#{staged_path}/skip.artifactbundle/macos/skip", "welcome", "--first-run"
   end
 
   caveats do
