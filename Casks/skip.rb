@@ -9,6 +9,7 @@ cask "skip" do
   homepage "https://skip.tools/"
 
   depends_on formula: "gradle"
+  depends_on cask: "android-platform-tools"
   depends_on macos: ">= :ventura"
 
   binary "skip.artifactbundle/macos/skip"
