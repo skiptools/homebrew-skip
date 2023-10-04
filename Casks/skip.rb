@@ -1,6 +1,6 @@
 cask "skip" do
-  version "0.6.87"
-  sha256 "47661f81a1b3481c2482a969b0a3a54d7b59ac633b6f1a152d93e838a9d944e7"
+  version "0.6.88"
+  sha256 "77680228d2a50bd4aa05a8c54fb9915ce9e70614e777e164bba314dad5294881"
 
   url "https://source.skip.tools/skip/releases/download/#{version}/skip.zip",
       verified: "source.skip.tools/skip/"
