@@ -9,7 +9,7 @@ cask "skip" do
   homepage "https://skip.tools/"
 
   depends_on formula: "openjdk@21"
-  depends_on formula: "gradle@8.5"
+  depends_on formula: "gradle"
   depends_on cask: "android-platform-tools"
   depends_on macos: ">= :ventura"
 
