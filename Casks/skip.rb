@@ -8,7 +8,8 @@ cask "skip" do
   desc "Tool for creating dual-platform iPhone/Android apps in Swift"
   homepage "https://skip.tools/"
 
-  depends_on formula: "openjdk@21"
+  depends_on formula: "openjdk@17"
+  #depends_on formula: "openjdk@21"
   depends_on formula: "gradle"
   depends_on cask: "android-platform-tools"
   depends_on macos: ">= :ventura"
