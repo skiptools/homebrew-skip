@@ -14,9 +14,12 @@ cask "swift-android-toolchain@5.10.1" do
   depends_on macos: ">= :ventura"
 
   postflight do
-    puts "Creating toolchain link at ~/Library/Developer/Skip/SDKs/swift-#{version}-android-sdk"
-    target = Pathname.new("~/Library/Developer/Skip/SDKs/swift-#{version}-android-sdk").expand_path
+    folder = "swift-#{version}-android-sdk"
+    puts "Creating toolchain link at ~/Library/Developer/Skip/SDKs/#{folder}"
+    target = Pathname.new("~/Library/Developer/Skip/SDKs").expand_path
     FileUtils.mkdir_p target
-    File.symlink("#{staged_path}/swift-#{version}-android-sdk/usr", "#{target}/usr")  
+    File.symlink("#{staged_path}/#{folder}", "#{target}/#{folder}")
   end
+
+  uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-android-sdk"
 end
