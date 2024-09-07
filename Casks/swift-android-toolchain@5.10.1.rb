@@ -8,6 +8,7 @@ cask "swift-android-toolchain@5.10.1" do
   homepage "https://skip.tools"
 
   depends_on macos: ">= :ventura"
+  depends_on cask: "android-ndk"
   depends_on cask: "skiptools/skip/skip"
   depends_on cask: "skiptools/skip/swift-host-toolchain@#{version}"
 
