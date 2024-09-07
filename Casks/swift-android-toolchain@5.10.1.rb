@@ -7,10 +7,11 @@ cask "swift-android-toolchain@5.10.1" do
   desc "Swift Android Toolchain"
   homepage "https://skip.tools"
 
-  depends_on macos: ">= :ventura"
   depends_on cask: "android-ndk"
+  depends_on cask: "android-commandlinetools"
   depends_on cask: "skiptools/skip/skip"
   depends_on cask: "skiptools/skip/swift-host-toolchain@#{version}"
+  depends_on macos: ">= :ventura"
 
   postflight do
     puts "Creating toolchain link at ~/Library/Developer/Skip/SDKs/swift-#{version}-android-sdk"
