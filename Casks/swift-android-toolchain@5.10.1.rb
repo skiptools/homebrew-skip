@@ -1,8 +1,8 @@
 cask "swift-android-toolchain@5.10.1" do
   version "5.10.1"
-  sha256 "015d304c12f77b9ea109c70ed8673a0c07109cc7b26069532f997069516a3762"
+  sha256 "83b1fbfb47f24b6e3bc44c0f368919e9c8f02f5002bed7dab517f56b8d89eb38"
 
-  url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{version}/swift-#{version}-android-sdk.tar.xz"
+  url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{version}/swift-#{version}-RELEASE-android-sdk.tar.xz"
   name "swift-android-toolchain@#{version}"
   desc "Swift Android Toolchain"
   homepage "https://skip.tools"
@@ -14,12 +14,12 @@ cask "swift-android-toolchain@5.10.1" do
   depends_on macos: ">= :ventura"
 
   postflight do
-    folder = "swift-#{version}-android-sdk"
+    folder = "swift-#{version}-RELEASE-android-sdk"
     puts "Creating toolchain link at ~/Library/Developer/Skip/SDKs/#{folder}"
     target = Pathname.new("~/Library/Developer/Skip/SDKs").expand_path
     FileUtils.mkdir_p target
     File.symlink("#{staged_path}/#{folder}", "#{target}/#{folder}")
   end
 
-  uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-android-sdk"
+  uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-RELEASE-android-sdk"
 end
