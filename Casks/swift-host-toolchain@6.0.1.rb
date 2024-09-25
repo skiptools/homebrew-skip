@@ -1,6 +1,6 @@
-cask "swift-host-toolchain@5.10.1" do
-  version "5.10.1"
-  sha256 "c4e1d693d48c7ffd67724b74ffcbdca0aca05b37d2c41649aab13d2c649d19e7"
+cask "swift-host-toolchain@6.0.1" do
+  version "6.0.1"
+  sha256 "924a9ecd4c2f8f6fe284ab0c966305e32eb98d17d4abfa47289bb0a061f72f89"
 
   url "https://download.swift.org/swift-#{version}-release/xcode/swift-#{version}-RELEASE/swift-#{version}-RELEASE-osx.pkg"
   name "swift-#{version}"
@@ -24,7 +24,7 @@ cask "swift-host-toolchain@5.10.1" do
     args:       ["-pkg", "#{staged_path}/swift-#{version}-RELEASE-osx.pkg", "-target", "CurrentUserHomeDirectory"]
   }
 
-  #uninstall pkgutil: "org.swift.5101202406041a"
+  #uninstall pkgutil: "org.swift.600202408011a"
 
   # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
   #zap trash: ""
