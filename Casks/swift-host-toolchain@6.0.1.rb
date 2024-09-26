@@ -1,6 +1,6 @@
 cask "swift-host-toolchain@6.0.1" do
   version "6.0.1"
-  sha256 "924a9ecd4c2f8f6fe284ab0c966305e32eb98d17d4abfa47289bb0a061f72f89"
+  sha256 "335e8cd87e00302c19acb819ba356d03a561b1d0edc217b97dbdbf287306788d"
 
   url "https://download.swift.org/swift-#{version}-release/xcode/swift-#{version}-RELEASE/swift-#{version}-RELEASE-osx.pkg"
   name "swift-#{version}"
