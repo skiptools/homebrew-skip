@@ -1,1 +1,0 @@
-swift-android-toolchain@5.10.rb
