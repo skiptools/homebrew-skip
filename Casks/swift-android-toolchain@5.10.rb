@@ -1,9 +1,9 @@
-cask "swift-android-toolchain@6.0" do
+cask "swift-android-toolchain@5.10" do
   # note: Casks do not support aliases and symbolic links require exact cask
   # name match, so new versions (e.g., swift-android-toolchain@6.0.x.rb)
   # will need to be manually copied over to swift-android-toolchain@6.0.rb
-  version "6.0.1"
-  sha256 "335e8cd87e00302c19acb819ba356d03a561b1d0edc217b97dbdbf287306788d"
+  version "5.10.1"
+  sha256 "83b1fbfb47f24b6e3bc44c0f368919e9c8f02f5002bed7dab517f56b8d89eb38"
 
   url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{version}/swift-#{version}-RELEASE-android-sdk.tar.xz"
   name "swift-android-toolchain@#{version}"
