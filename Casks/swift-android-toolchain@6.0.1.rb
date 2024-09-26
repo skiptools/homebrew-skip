@@ -1,6 +1,6 @@
 cask "swift-android-toolchain@6.0.1" do
   version "6.0.1"
-  sha256 "07c6bf5f635bc62aad07fc52f473d7b86af96159e8ad1bf01fad40c1ee7ffdac"
+  sha256 "335e8cd87e00302c19acb819ba356d03a561b1d0edc217b97dbdbf287306788d"
 
   url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{version}/swift-#{version}-RELEASE-android-sdk.tar.xz"
   name "swift-android-toolchain@#{version}"
