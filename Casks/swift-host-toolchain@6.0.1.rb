@@ -24,6 +24,17 @@ cask "swift-host-toolchain@6.0.1" do
     args:       ["-pkg", "#{staged_path}/swift-#{version}-RELEASE-osx.pkg", "-target", "CurrentUserHomeDirectory"]
   }
 
+  swift_package = Pathname.new("~/Library/Developer/Toolchains/swift-#{version}-RELEASE.xctoolchain/usr/bin/swift-package").expand_path
+
+  # patch the swift-package command to enable running tests on Android
+  # https://github.com/finagolfin/swift-android-sdk/issues/173
+  postflight do
+    system_command "perl", args: ["-pi", "-e", "s%canImport\\(Bionic%canImport\\(Android%", swift_package]
+    system_command "perl", args: ["-pi", "-e", "s%import Bionic%import Android%", swift_package]
+    system_command "perl", args: ["-pi", "-e", "s%TSCBasic, would be%TSCBasic, would %", swift_package]
+    system_command "codesign", args: ["-f", "-s", "-", swift_package]
+  end
+
   #uninstall pkgutil: "org.swift.600202408011a"
 
   # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
