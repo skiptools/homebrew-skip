@@ -3,7 +3,7 @@ cask "swift-android-toolchain@6.0.1" do
   # name match, so new versions (e.g., swift-android-toolchain@6.0.x.rb)
   # will need to be manually copied over to swift-android-toolchain@6.0.rb
   version "6.0.1"
-  sha256 "335e8cd87e00302c19acb819ba356d03a561b1d0edc217b97dbdbf287306788d"
+  sha256 "46ffbfdf06865b6cb52d04e60b576f52aeb5ca85ee51218a64cfe277f9c7a0bc"
 
   url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{version}/swift-#{version}-RELEASE-android-sdk.tar.xz"
   name "swift-android-toolchain@#{version}"
