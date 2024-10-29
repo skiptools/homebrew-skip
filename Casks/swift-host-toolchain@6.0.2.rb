@@ -26,7 +26,7 @@ cask "swift-host-toolchain@6.0.2" do
 
   swift_package = Pathname.new("~/Library/Developer/Toolchains/swift-#{version}-RELEASE.xctoolchain/usr/bin/swift-package").expand_path
 
-  #uninstall pkgutil: "org.swift.600202408011a"
+  uninstall pkgutil: "org.swift.600202408011a"
 
   # Documentation: https://docs.brew.sh/Cask-Cookbook#stanza-zap
   #zap trash: ""
