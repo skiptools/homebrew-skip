@@ -2,27 +2,30 @@ cask "swift-android-toolchain@6.0" do
   # note: Casks do not support aliases and symbolic links require exact cask
   # name match, so new versions (e.g., swift-android-toolchain@6.0.x.rb)
   # will need to be manually copied over to swift-android-toolchain@6.0.rb
-  version "6.0.1"
-  sha256 "46ffbfdf06865b6cb52d04e60b576f52aeb5ca85ee51218a64cfe277f9c7a0bc"
+  version "6.0.2"
+  sha256 "d75615eac3e614131133c7cc2076b0b8fb4327d89dce802c25cd53e75e1881f4"
 
-  url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{version}/swift-#{version}-RELEASE-android-sdk.tar.xz"
+  artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
+
+  url "https://source.skip.tools/swift-android-toolchain/releases/download/#{version}/#{artifact}.tar.gz"
   name "swift-android-toolchain@#{version}"
   desc "Swift Android Toolchain"
   homepage "https://skip.tools"
 
-  depends_on cask: "android-ndk"
-  depends_on cask: "android-commandlinetools"
-  depends_on cask: "skiptools/skip/skip"
   depends_on cask: "skiptools/skip/swift-host-toolchain@#{version}"
+  depends_on cask: "skiptools/skip/skip"
   depends_on macos: ">= :ventura"
 
+  swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{version}-RELEASE.xctoolchain/usr/bin/swift").expand_path
+
   postflight do
-    folder = "swift-#{version}-RELEASE-android-sdk"
-    puts "Creating toolchain link at ~/Library/Developer/Skip/SDKs/#{folder}"
-    target = Pathname.new("~/Library/Developer/Skip/SDKs").expand_path
-    FileUtils.mkdir_p target
-    File.symlink("#{staged_path}/#{folder}", "#{target}/#{folder}")
+    system "xattr", "-d", "-r", "-s", "com.apple.quarantine", "#{staged_path}/#{artifact}"
+    system "#{swiftcmd}", "sdk", "install", "#{staged_path}/#{artifact}"
   end
 
-  uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-RELEASE-android-sdk"
+  uninstall_preflight do
+    system "#{swiftcmd}", "sdk", "remove", "swift-#{version}-RELEASE-android-24-0.1"
+  end
+
+  #uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-RELEASE-android-sdk"
 end

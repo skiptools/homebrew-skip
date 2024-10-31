@@ -7,7 +7,7 @@ cask "swift-android-toolchain@6.0.2" do
 
   artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
 
-  url "https://github.com/finagolfin/swift-android-sdk/releases/download/#{version}/#{artifact}.tar.gz"
+  url "https://source.skip.tools/swift-android-toolchain/releases/download/#{version}/#{artifact}.tar.gz"
   name "swift-android-toolchain@#{version}"
   desc "Swift Android Toolchain"
   homepage "https://skip.tools"
