@@ -1,4 +1,4 @@
-cask "swift-android-toolchain@6.0" do
+cask "swift-android-toolchain@6.0.3" do
   # note: Casks do not support aliases and symbolic links require exact cask
   # name match, so new versions (e.g., swift-android-toolchain@6.0.x.rb)
   # will need to be manually copied over to swift-android-toolchain@6.0.rb
