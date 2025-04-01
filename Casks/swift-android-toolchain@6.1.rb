@@ -3,7 +3,7 @@ cask "swift-android-toolchain@6.1" do
   # name match, so new versions (e.g., swift-android-toolchain@6.1.x.rb)
   # will need to be manually copied over to swift-android-toolchain@6.1.rb
   version "6.1"
-  sha256 "ecd0afd2b210f147c68c06d9bc309b98f8936b722c95f15db77de2993ca94bb8"
+  sha256 "649597bc0e0cce345bc8f076b8b2627bb01302b60be670b9d05c8a3a2b7f87e8"
 
   artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
 
