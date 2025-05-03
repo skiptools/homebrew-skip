@@ -11,6 +11,7 @@ cask "skip" do
   depends_on formula: "openjdk"
   depends_on formula: "gradle"
   depends_on cask: "android-platform-tools"
+  depends_on cask: "android-commandlinetools"
   depends_on macos: ">= :ventura"
 
   binary "skip.artifactbundle/macos/skip"
