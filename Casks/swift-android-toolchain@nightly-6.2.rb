@@ -9,7 +9,7 @@ cask "swift-android-toolchain@nightly-6.2" do
   swift_version = "6.2-DEVELOPMENT-SNAPSHOT-2025-05-07-a"
 
   #artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
-  artifact "swift-#{swift_version}-android-0.1.artifactbundle"
+  artifact = "swift-#{swift_version}-android-0.1.artifactbundle"
 
   url "https://source.skip.tools/swift-android-toolchain/releases/download/#{swift_version}/#{artifact}.tar.gz"
   name "swift-android-toolchain@#{version}"
