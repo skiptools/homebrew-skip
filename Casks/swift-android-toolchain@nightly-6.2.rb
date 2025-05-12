@@ -6,7 +6,7 @@ cask "swift-android-toolchain@nightly-6.2" do
   sha256 "77bc7bc8f08b4c265c2fbbe155ab7d029e223581e420ae84717ca415bdff6726"
 
   # https://github.com/skiptools/swift-android-toolchain/releases/download/6.2-DEVELOPMENT-SNAPSHOT-2025-05-07-a/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-05-07-a-android-0.1.artifactbundle.tar.gz
-  swift_version "6.2-DEVELOPMENT-SNAPSHOT-2025-05-07-a"
+  swift_version = "6.2-DEVELOPMENT-SNAPSHOT-2025-05-07-a"
 
   #artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
   artifact "swift-#{swift_version}-android-0.1.artifactbundle"
