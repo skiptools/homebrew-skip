@@ -22,7 +22,7 @@ cask "swift-android-toolchain@nightly-6.2" do
   depends_on macos: ">= :ventura"
 
   swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{swift_version}.xctoolchain/usr/bin/swift").expand_path
-  sdkpath = Pathname.new("~/Library/org.swift.swiftpm/#{artifact}").expand_path
+  sdkpath = Pathname.new("~/Library/org.swift.swiftpm/swift-sdks/#{artifact}").expand_path
 
   postflight do
     system_command "xattr",
@@ -30,6 +30,9 @@ cask "swift-android-toolchain@nightly-6.2" do
         must_succeed: true
     system_command "#{swiftcmd}",
         args: ["sdk", "install", "#{staged_path}/#{artifact}"],
+        must_succeed: true
+    system_command "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh",
+        args: [],
         must_succeed: true
   end
 
