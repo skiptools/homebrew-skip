@@ -9,7 +9,8 @@ cask "swift-android-toolchain@nightly-6.2" do
   swift_version = "6.2-DEVELOPMENT-SNAPSHOT-2025-05-07-a"
 
   #artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
-  artifact = "swift-#{swift_version}-android-0.1.artifactbundle"
+  swift_android = "swift-#{swift_version}-android-0.1"
+  artifact = "#{swift_android}.artifactbundle"
 
   url "https://source.skip.tools/swift-android-toolchain/releases/download/#{swift_version}/#{artifact}.tar.gz"
   name "swift-android-toolchain@#{version}"
@@ -20,7 +21,7 @@ cask "swift-android-toolchain@nightly-6.2" do
   depends_on cask: "skiptools/skip/skip"
   depends_on macos: ">= :ventura"
 
-  swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{version}-RELEASE.xctoolchain/usr/bin/swift").expand_path
+  swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{swift_version}.xctoolchain/usr/bin/swift").expand_path
 
   postflight do
     system "xattr", "-d", "-r", "-s", "com.apple.quarantine", "#{staged_path}/#{artifact}"
@@ -28,7 +29,7 @@ cask "swift-android-toolchain@nightly-6.2" do
   end
 
   uninstall_preflight do
-    system "#{swiftcmd}", "sdk", "remove", "swift-#{version}-RELEASE-android-24-0.1"
+    system "#{swiftcmd}", "sdk", "remove", "#{swift_android}"
   end
 
   #uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-RELEASE-android-sdk"
