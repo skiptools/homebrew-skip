@@ -22,10 +22,12 @@ cask "swift-android-toolchain@nightly-6.2" do
   depends_on macos: ">= :ventura"
 
   swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{swift_version}.xctoolchain/usr/bin/swift").expand_path
+  sdkpath = Pathname.new("~/Library/org.swift.swiftpm/#{artifact}").expand_path
 
   postflight do
     system "xattr", "-d", "-r", "-s", "com.apple.quarantine", "#{staged_path}/#{artifact}"
     system "#{swiftcmd}", "sdk", "install", "#{staged_path}/#{artifact}"
+    system "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh"
   end
 
   uninstall_preflight do
