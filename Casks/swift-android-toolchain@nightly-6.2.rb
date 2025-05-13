@@ -19,6 +19,7 @@ cask "swift-android-toolchain@nightly-6.2" do
 
   depends_on cask: "skiptools/skip/swift-host-toolchain@#{version}"
   depends_on cask: "skiptools/skip/skip"
+  depends_on cask: "android-ndk"
   depends_on macos: ">= :ventura"
 
   swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{swift_version}.xctoolchain/usr/bin/swift").expand_path
@@ -33,7 +34,7 @@ cask "swift-android-toolchain@nightly-6.2" do
         must_succeed: true
 
     system_command "env",
-        args: ["ANDROID_NDK_HOME="#{HOMEBREW_PREFIX}/share/android-ndk", "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh"],
+        args: ["ANDROID_NDK_HOME=#{HOMEBREW_PREFIX}/share/android-ndk", "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh"],
         must_succeed: true
   end
 
