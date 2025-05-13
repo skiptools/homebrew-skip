@@ -31,9 +31,6 @@ cask "swift-android-toolchain@nightly-6.2" do
     system_command "#{swiftcmd}",
         args: ["sdk", "install", "#{staged_path}/#{artifact}"],
         must_succeed: true
-    system_command "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh",
-        args: [],
-        must_succeed: true
   end
 
   uninstall_preflight do
