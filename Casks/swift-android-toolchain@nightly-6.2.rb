@@ -25,11 +25,18 @@ cask "swift-android-toolchain@nightly-6.2" do
   sdkpath = Pathname.new("~/Library/org.swift.swiftpm/#{artifact}").expand_path
 
   postflight do
-          system_command "/usr/bin/killall",
-                   args:         ["coreaudiod"],
-                   sudo:         true,
-                   must_succeed: true
-
+    system_command "xattr",
+        args: ["-d", "-r", "-s", "com.apple.quarantine", "#{staged_path}/#{artifact}"],
+        sudo: false,
+        must_succeed: true
+    system_command "#{swiftcmd}",
+        args: ["sdk", "install", "#{staged_path}/#{artifact}"],
+        sudo: false,
+        must_succeed: true
+    system_command "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh"],
+        args: [],
+        sudo: false,
+        must_succeed: true
   end
 
   uninstall_preflight do
