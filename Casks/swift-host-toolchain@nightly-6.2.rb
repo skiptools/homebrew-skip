@@ -1,8 +1,8 @@
 cask "swift-host-toolchain@nightly-6.2" do
   version "nightly-6.2"
-  sha256 "0df26210694db8c4350a258815c4d5a886704793d34298e63051a34cafc36473"
+  sha256 "ba778b9c76c2e16084529ad9892d5aadb630aa5f53db4bddcb19abacf9d9a63d"
 
-  swift_release = "swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-04-a"
+  swift_release = "swift-6.2-DEVELOPMENT-SNAPSHOT-2025-07-09-a"
 
   #url "https://download.swift.org/swift-#{version}-release/xcode/swift-#{version}-RELEASE/swift-#{version}-RELEASE-osx.pkg"
   url "https://download.swift.org/swift-6.2-branch/xcode/#{swift_release}/#{swift_release}-osx.pkg"
