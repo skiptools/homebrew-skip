@@ -3,10 +3,10 @@ cask "swift-android-toolchain@nightly-6.2" do
   # name match, so new versions (e.g., swift-android-toolchain@6.1.x.rb)
   # will need to be manually copied over to swift-android-toolchain@6.1.rb
   version "nightly-6.2"
-  sha256 "dbc07b6dd485118afe4b22351a0ba904fa6a06b3cd819b78bafad02b5e50e65a"
+  sha256 "546078395418c13e9f79618f1d8f33df24658d32755e3fc51febf78b43f73b9d"
 
-  # https://github.com/skiptools/swift-android-toolchain/releases/download/6.2-DEVELOPMENT-SNAPSHOT-2025-08-14-a/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-08-14-a-android-0.1.artifactbundle.tar.gz
-  swift_version = "6.2-DEVELOPMENT-SNAPSHOT-2025-08-14-a"
+  # https://github.com/skiptools/swift-android-toolchain/releases/download/6.2-DEVELOPMENT-SNAPSHOT-2025-08-28-a/swift-6.2-DEVELOPMENT-SNAPSHOT-2025-08-28-a-android-0.1.artifactbundle.tar.gz
+  swift_version = "6.2-DEVELOPMENT-SNAPSHOT-2025-08-28-a"
 
   #artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
   swift_android = "swift-#{swift_version}-android-0.1"
