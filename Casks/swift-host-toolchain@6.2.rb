@@ -2,9 +2,9 @@ cask "swift-host-toolchain@6.2" do
   version "6.2"
   sha256 "9eac4a13500c7a6dedfd90814fd31c17af2efc38150137b56b70bf5f44b2d64b"
 
-  swift_release = "swift-6.2"
+  swift_release = "swift-6.2-RELEASE"
 
-  url "https://download.swift.org/swift-#{version}-release/xcode/swift-#{version}-RELEASE/swift-#{version}-RELEASE-osx.pkg"
+  url "https://download.swift.org/swift-#{version}-release/xcode/#{swift_release}/#{swift_release}-osx.pkg"
   name "swift-#{version}"
   desc "Swift Open Source Xcode Toolchain"
   homepage "https://swift.org"
