@@ -18,6 +18,7 @@ cask "skip" do
   binary "skip.artifactbundle/bin/skip"
 
   postflight do
+    system "swiftly", "init", "--assume-yes", "--no-modify-profile", "--skip-install"
     system "#{staged_path}/skip.artifactbundle/bin/skip", "welcome", "--first-run"
   end
 
