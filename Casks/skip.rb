@@ -1,23 +1,24 @@
 cask "skip" do
-  version "1.6.30"
-  sha256 "3d8f56bd60a550155e286fda3d91fcad07ad9f9cb99cb5e9ccb3dccaad16dd09"
+  os macos: "macos", linux: "linux"
 
-  url "https://source.skip.tools/skip/releases/download/#{version}/skip.zip",
+  version "1.6.31"
+  sha256 :no_check
+
+  url "https://source.skip.tools/skip/releases/download/#{version}/skip-#{os}.zip",
       verified: "source.skip.tools/skip/"
   name "Skip"
-  desc "Tool for creating dual-platform iPhone/Android apps in Swift"
+  desc "Tool for creating and building universal swift apps"
   homepage "https://skip.tools/"
 
+  depends_on formula: "swiftly"
   depends_on formula: "openjdk"
   depends_on formula: "gradle"
   depends_on cask: "android-platform-tools"
-  depends_on macos: ">= :ventura"
 
-  binary "skip.artifactbundle/macos/skip"
+  binary "skip.artifactbundle/bin/skip"
 
   postflight do
-    system "xattr", "-c", "#{staged_path}/skip.artifactbundle/macos/skip"
-    system "#{staged_path}/skip.artifactbundle/macos/skip", "welcome", "--first-run"
+    system "#{staged_path}/skip.artifactbundle/bin/skip", "welcome", "--first-run"
   end
 
   caveats do
