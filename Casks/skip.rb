@@ -1,11 +1,11 @@
 cask "skip" do
   os macos: "macos", linux: "linux"
 
-  version "1.6.36"
-  sha256 arm:          "08fc709ec24def7950b04f47bacfb83ab3f5dd7056b8500720ca6ea119938333",
-         x86_64:       "08fc709ec24def7950b04f47bacfb83ab3f5dd7056b8500720ca6ea119938333",
-         arm64_linux:  "b8a8904666968235a9f8758455d68f4d2993839d4a84b024fefde8f054cb0681",
-         x86_64_linux: "b8a8904666968235a9f8758455d68f4d2993839d4a84b024fefde8f054cb0681"
+  version "1.6.37"
+  sha256 arm:          "f34c9cd28f51c4ee7c3ab7089d2daac5f6dd067c45c9a301b80f73fbacdcd8e4",
+         x86_64:       "f34c9cd28f51c4ee7c3ab7089d2daac5f6dd067c45c9a301b80f73fbacdcd8e4",
+         arm64_linux:  "45723a8e62d4d646fd0a9f07a9b13b52c2161f3e5961c17d85f15cdc38a6b25b",
+         x86_64_linux: "45723a8e62d4d646fd0a9f07a9b13b52c2161f3e5961c17d85f15cdc38a6b25b"
 
   url "https://source.skip.tools/skip/releases/download/#{version}/skip-#{os}.zip",
       verified: "source.skip.tools/skip/"
