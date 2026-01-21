@@ -11,7 +11,7 @@ cask "skip" do
       verified: "source.skip.tools/skip/"
   name "Skip"
   desc "Tool for creating and building universal swift apps"
-  homepage "https://skip.tools/"
+  homepage "https://skip.dev"
 
   depends_on formula: "swiftly"
   depends_on formula: "openjdk"
@@ -24,9 +24,5 @@ cask "skip" do
   postflight do
     system "swiftly", "init", "--assume-yes", "--no-modify-profile", "--skip-install"
     system "#{staged_path}/skip.artifactbundle/bin/skip", "welcome", "--first-run"
-  end
-
-  caveats do
-    license "https://skip.tools/eula"
   end
 end
