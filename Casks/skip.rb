@@ -14,7 +14,7 @@ cask "skip" do
   homepage "https://skip.dev"
 
   depends_on formula: "swiftly"
-  depends_on formula: "openjdk"
+  depends_on formula: "temurin"
   depends_on formula: "gradle"
   depends_on cask: "android-platform-tools"
   depends_on cask: "android-commandlinetools"
