@@ -22,7 +22,8 @@ cask "skip" do
   binary "skip.artifactbundle/bin/skip"
 
   postflight do
-    system_command "#{Formula["swiftly"].bin}/swiftly",
+    swiftly_path = OS.mac? ? "#{Formula["swiftly"].bin}/swiftly" : "swiftly"
+    system_command swiftly_path,
       args: ["init", "--assume-yes", "--no-modify-profile", "--skip-install"],
       must_succeed: true
     system_command "#{staged_path}/skip.artifactbundle/bin/skip",
