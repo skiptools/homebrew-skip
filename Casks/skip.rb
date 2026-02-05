@@ -22,7 +22,11 @@ cask "skip" do
   binary "skip.artifactbundle/bin/skip"
 
   postflight do
-    system "swiftly", "init", "--assume-yes", "--no-modify-profile", "--skip-install"
-    system "#{staged_path}/skip.artifactbundle/bin/skip", "welcome", "--first-run"
+    system_command "#{Formula["swiftly"].bin}/swiftly",
+      args: ["init", "--assume-yes", "--no-modify-profile", "--skip-install"],
+      must_succeed: true
+    system_command "#{staged_path}/skip.artifactbundle/bin/skip",
+      args: ["welcome", "--first-run"],
+      must_succeed: true
   end
 end
