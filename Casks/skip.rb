@@ -16,6 +16,7 @@ cask "skip" do
   depends_on formula: "swiftly"
   depends_on formula: "openjdk"
   depends_on formula: "gradle"
+  depends_on cask: "android-commandlinetools"
 
   binary "skip.artifactbundle/bin/skip"
 
@@ -29,5 +30,6 @@ cask "skip" do
     system_command "#{staged_path}/skip.artifactbundle/bin/skip",
       args: ["welcome", "--first-run"],
       must_succeed: true
+    generate_completions_from_executable(bin/"skip", "--generate-completion-script")
   end
 end
