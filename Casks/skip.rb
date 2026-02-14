@@ -30,6 +30,6 @@ cask "skip" do
     system_command "#{staged_path}/skip.artifactbundle/bin/skip",
       args: ["welcome", "--first-run"],
       must_succeed: true
-    generate_completions_from_executable(bin/"skip", "--generate-completion-script")
+    generate_completions_from_executable("#{staged_path}/skip.artifactbundle/bin/skip", "--generate-completion-script")
   end
 end
