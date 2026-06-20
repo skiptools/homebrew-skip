@@ -13,7 +13,7 @@ cask "swift-host-toolchain@5.10" do
   #  strategy ""
   #end
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   # this tries to install for all users by default, which requires sudo
   #pkg "swift-#{version}-RELEASE-osx.pkg"

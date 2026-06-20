@@ -14,7 +14,7 @@ cask "swift-android-toolchain@6.0.1" do
   depends_on cask: "android-commandlinetools"
   depends_on cask: "skiptools/skip/skip"
   depends_on cask: "skiptools/skip/swift-host-toolchain@#{version}"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   postflight do
     folder = "swift-#{version}-RELEASE-android-sdk"
