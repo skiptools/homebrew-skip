@@ -14,7 +14,7 @@ cask "swift-android-toolchain@6.1" do
 
   depends_on cask: "skiptools/skip/swift-host-toolchain@#{version}"
   depends_on cask: "skiptools/skip/skip"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{version}-RELEASE.xctoolchain/usr/bin/swift").expand_path
 
