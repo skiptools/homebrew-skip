@@ -7,8 +7,7 @@ cask "skip" do
          arm64_linux:  "0d30f1503850bed868c1e1d63116f460cff4049e2106ff12ebc84d07d8633053",
          x86_64_linux: "0d30f1503850bed868c1e1d63116f460cff4049e2106ff12ebc84d07d8633053"
 
-  url "https://github.com/skiptools/skip/releases/download/#{version}/skip-#{os}.zip",
-      verified: "github.com/skiptools/skip/"
+  url "https://github.com/skiptools/skip/releases/download/#{version}/skip-#{os}.zip"
   name "Skip"
   desc "Tool for creating and building universal swift apps"
   homepage "https://skip.dev"
@@ -20,15 +19,17 @@ cask "skip" do
 
   binary "skip.artifactbundle/bin/skip"
 
-  postflight do
+  postflight_steps do
     # awaiting https://github.com/swiftlang/swiftly/pull/503
-    if OS.mac?
-      system_command "#{Formula["swiftly"].bin}/swiftly",
-        args: ["init", "--assume-yes", "--no-modify-profile", "--skip-install"],
-        must_succeed: true
+    on_macos do
+      run "opt/swiftly/bin/swiftly",
+          base:           :homebrew_prefix,
+          args:           ["init", "--assume-yes", "--no-modify-profile", "--skip-install"],
+          writable_paths: [".swiftly"],
+          writable_base:  :home
     end
-    system_command "#{staged_path}/skip.artifactbundle/bin/skip",
-      args: ["welcome", "--first-run"],
-      must_succeed: true
+    run "skip.artifactbundle/bin/skip",
+        base: :staged_path,
+        args: ["welcome", "--first-run"]
   end
 end

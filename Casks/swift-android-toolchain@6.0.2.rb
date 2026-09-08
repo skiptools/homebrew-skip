@@ -5,9 +5,10 @@ cask "swift-android-toolchain@6.0.2" do
   version "6.0.2"
   sha256 "d75615eac3e614131133c7cc2076b0b8fb4327d89dce802c25cd53e75e1881f4"
 
-  artifact = "swift-#{version}-RELEASE-android-24-0.1.artifactbundle"
+  sdk_name = "swift-#{version}-RELEASE-android-24-0.1"
+  artifact = "#{sdk_name}.artifactbundle"
 
-  url "https://source.skip.tools/swift-android-toolchain/releases/download/#{version}/#{artifact}.tar.gz"
+  url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{version}/#{artifact}.tar.gz"
   name "swift-android-toolchain@#{version}"
   desc "Swift Android Toolchain"
   homepage "https://skip.tools"
@@ -16,15 +17,28 @@ cask "swift-android-toolchain@6.0.2" do
   depends_on cask: "skiptools/skip/skip"
   depends_on macos: :ventura
 
-  swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{version}-RELEASE.xctoolchain/usr/bin/swift").expand_path
+  swiftcmd = "Library/Developer/Toolchains/swift-#{version}-RELEASE.xctoolchain/usr/bin/swift"
+  swiftpm_paths = ["Library/org.swift.swiftpm", "Library/Caches/org.swift.swiftpm"]
 
-  postflight do
-    system "xattr", "-d", "-r", "-s", "com.apple.quarantine", "#{staged_path}/#{artifact}"
-    system "#{swiftcmd}", "sdk", "install", "#{staged_path}/#{artifact}"
+  postflight_steps do
+    run "xattr",
+        args:         ["-d", "-r", "-s", "com.apple.quarantine", "{{staged_path}}/#{artifact}"],
+        must_succeed: false
+    run swiftcmd,
+        base:           :home,
+        args:           ["sdk", "install", "{{staged_path}}/#{artifact}"],
+        writable_paths: swiftpm_paths,
+        writable_base:  :home,
+        must_succeed:   false
   end
 
-  uninstall_preflight do
-    system "#{swiftcmd}", "sdk", "remove", "swift-#{version}-RELEASE-android-24-0.1"
+  uninstall_preflight_steps do
+    run swiftcmd,
+        base:           :home,
+        args:           ["sdk", "remove", sdk_name],
+        writable_paths: swiftpm_paths,
+        writable_base:  :home,
+        must_succeed:   false
   end
 
   #uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-RELEASE-android-sdk"

@@ -16,12 +16,11 @@ cask "swift-android-toolchain@6.0.1" do
   depends_on cask: "skiptools/skip/swift-host-toolchain@#{version}"
   depends_on macos: :ventura
 
-  postflight do
-    folder = "swift-#{version}-RELEASE-android-sdk"
-    puts "Creating toolchain link at ~/Library/Developer/Skip/SDKs/#{folder}"
-    target = Pathname.new("~/Library/Developer/Skip/SDKs").expand_path
-    FileUtils.mkdir_p target
-    File.symlink("#{staged_path}/#{folder}", "#{target}/#{folder}")
+  folder = "swift-#{version}-RELEASE-android-sdk"
+
+  postflight_steps do
+    mkdir_p "Library/Developer/Skip/SDKs", base: :home
+    symlink folder, "Library/Developer/Skip/SDKs/#{folder}", target_base: :home
   end
 
   uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-RELEASE-android-sdk"
