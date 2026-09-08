@@ -12,7 +12,7 @@ cask "swift-android-toolchain@nightly-6.2" do
   swift_android = "swift-#{swift_version}-android-0.1"
   artifact = "#{swift_android}.artifactbundle"
 
-  url "https://source.skip.tools/swift-android-toolchain/releases/download/#{swift_version}/#{artifact}.tar.gz"
+  url "https://github.com/skiptools/swift-android-toolchain/releases/download/#{swift_version}/#{artifact}.tar.gz"
   name "swift-android-toolchain@#{version}"
   desc "Swift Android Toolchain"
   homepage "https://skip.tools"
@@ -22,24 +22,33 @@ cask "swift-android-toolchain@nightly-6.2" do
   depends_on cask: "android-ndk"
   depends_on macos: :ventura
 
-  swiftcmd = Pathname.new("~/Library/Developer/Toolchains/swift-#{swift_version}.xctoolchain/usr/bin/swift").expand_path
-  sdkpath = Pathname.new("~/Library/org.swift.swiftpm/swift-sdks/#{artifact}").expand_path
+  swiftcmd = "Library/Developer/Toolchains/swift-#{swift_version}.xctoolchain/usr/bin/swift"
+  sdkpath = "Library/org.swift.swiftpm/swift-sdks/#{artifact}"
+  swiftpm_paths = ["Library/org.swift.swiftpm", "Library/Caches/org.swift.swiftpm"]
 
-  postflight do
-    system_command "xattr",
-        args: ["-d", "-r", "-s", "com.apple.quarantine", "#{staged_path}/#{artifact}"],
-        must_succeed: true
-    system_command "#{swiftcmd}",
-        args: ["sdk", "install", "#{staged_path}/#{artifact}"],
-        must_succeed: true
+  postflight_steps do
+    run "xattr",
+        args: ["-d", "-r", "-s", "com.apple.quarantine", "{{staged_path}}/#{artifact}"]
+    run swiftcmd,
+        base:           :home,
+        args:           ["sdk", "install", "{{staged_path}}/#{artifact}"],
+        writable_paths: swiftpm_paths,
+        writable_base:  :home
 
-    system_command "env",
-        args: ["ANDROID_NDK_HOME=#{HOMEBREW_PREFIX}/share/android-ndk", "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh"],
-        must_succeed: true
+    run "#{sdkpath}/swift-android/scripts/setup-android-sdk.sh",
+        base:           :home,
+        env:            { "ANDROID_NDK_HOME" => "{{HOMEBREW_PREFIX}}/share/android-ndk" },
+        writable_paths: swiftpm_paths,
+        writable_base:  :home
   end
 
-  uninstall_preflight do
-    system "#{swiftcmd}", "sdk", "remove", "#{swift_android}"
+  uninstall_preflight_steps do
+    run swiftcmd,
+        base:           :home,
+        args:           ["sdk", "remove", swift_android],
+        writable_paths: swiftpm_paths,
+        writable_base:  :home,
+        must_succeed:   false
   end
 
   #uninstall delete: "~/Library/Developer/Skip/SDKs/swift-#{version}-RELEASE-android-sdk"

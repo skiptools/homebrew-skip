@@ -28,11 +28,19 @@ cask "swift-host-toolchain@6.0.1" do
 
   # patch the swift-package command to enable running tests on Android
   # https://github.com/finagolfin/swift-android-sdk/issues/173
-  postflight do
-    system_command "perl", args: ["-pi", "-e", "s%canImport\\(Bionic%canImport\\(Android%", swift_package]
-    system_command "perl", args: ["-pi", "-e", "s%import Bionic%import Android%", swift_package]
-    system_command "perl", args: ["-pi", "-e", "s%TSCBasic, would be%TSCBasic, would %", swift_package]
-    system_command "codesign", args: ["-f", "-s", "-", swift_package]
+  postflight_steps do
+    run "perl",
+        args:           ["-pi", "-e", "s%canImport\\(Bionic%canImport\\(Android%", swift_package],
+        writable_paths: [swift_package.dirname]
+    run "perl",
+        args:           ["-pi", "-e", "s%import Bionic%import Android%", swift_package],
+        writable_paths: [swift_package.dirname]
+    run "perl",
+        args:           ["-pi", "-e", "s%TSCBasic, would be%TSCBasic, would %", swift_package],
+        writable_paths: [swift_package.dirname]
+    run "codesign",
+        args:           ["-f", "-s", "-", swift_package],
+        writable_paths: [swift_package.dirname]
   end
 
   #uninstall pkgutil: "org.swift.600202408011a"
