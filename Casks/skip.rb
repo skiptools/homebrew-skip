@@ -25,7 +25,10 @@ cask "skip" do
       run "opt/swiftly/bin/swiftly",
           base:           :homebrew_prefix,
           args:           ["init", "--assume-yes", "--no-modify-profile", "--skip-install"],
-          writable_paths: [".swiftly"],
+          # swiftly init creates ~/.swiftly, ~/.swiftly/bin and the toolchains
+          # dir; declare ~/Library/Developer so it can create Toolchains inside
+          # it even when the Developer dir does not exist yet
+          writable_paths: [".swiftly", "Library/Developer"],
           writable_base:  :home
     end
     run "skip.artifactbundle/bin/skip",
