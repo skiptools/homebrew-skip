@@ -15,8 +15,8 @@ hosted through this homebrew-skip repository
 with the command:
 
 ```shell
-brew tap skipstone/skip
-brew install skipstone/skip/skip
+brew tap skiptools/skip
+brew install skiptools/skip/skip
 ```
 
 For more information on getting started with Skip, see
